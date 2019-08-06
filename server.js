@@ -12,8 +12,9 @@ const server = new Koa();
 const router = new Router();
 
 
-router.get('/test', (ctx) => {
-    ctx.body = '<h1>Hello</h1>'
+router.get('/test:id', (ctx) => {
+    const id = ctx.params.id
+    ctx.body = `<h1>Hello ${id}</h1>${JSON.stringify(ctx.request.headers, null, 2)}`
 })
 server.use(router.routes())
 
