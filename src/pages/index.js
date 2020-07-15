@@ -1,22 +1,24 @@
 import React from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import { graphql } from "gatsby"
 
-const IndexPage = () => (
+export default ({ data }) => (
   <Layout>
-    <SEO title="Home" />
-    <h1>This is a test</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+    <h1>Hi! I'm building a fake Gatsby site as part of a tutorial!</h1>
+    <p>
+      <b>{data.site.siteMetadata.title}</b>
+      What do I like to do? Lots of course but definitely enjoy building
+      websites.
+    </p>
   </Layout>
 )
 
-export default IndexPage
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
